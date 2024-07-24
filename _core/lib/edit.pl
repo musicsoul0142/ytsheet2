@@ -225,6 +225,8 @@ sub radio {
   my $oninput = shift;
   my $value = shift;
   my $text = shift;
+  my $deselectable;
+  if($oninput =~ s/^deselectable,?//){ $deselectable = 1; }
   if($oninput && $oninput !~ /\(.*?\)$/){ $oninput .= '()'; }
   '<label class="radio-button">'.
   '<input type="radio"'.
@@ -232,6 +234,7 @@ sub radio {
   ' value="'.$value.'"'.
   ($::pc{$name} eq $value?" checked":"").
   ($oninput?' oninput="'.$oninput.'"':"").
+  ($deselectable?' class="deselectable"':"").
   '>'.
   ($text?'<span>'.$text.'</span>':'').
   '</label>';
@@ -239,6 +242,8 @@ sub radio {
 sub radios {
   my $name = shift;
   my $oninput = shift;
+  my $deselectable;
+  if($oninput =~ s/^deselectable,?//){ $deselectable = 1; }
   if($oninput && $oninput !~ /\(.*?\)$/){ $oninput .= '()'; }
   my $out;
   foreach (@_) {
@@ -251,6 +256,7 @@ sub radios {
     ' value="'.$value.'"'.
     ($::pc{$name} eq $value?" checked":"").
     ($oninput?' oninput="'.$oninput.'"':"").
+    ($deselectable?' class="deselectable"':"").
     '><span>'.$view.'</span></label>';
   }
   return $out;
@@ -264,7 +270,7 @@ sub option {
     my $label = 0;
     if($value =~ s/^def=//){
       if($value =~ s/\|\<(.*?)\>$//){ $view = $1 } else { $view = $value }
-      $text = '<option value="">'.$view;
+      $text = '<option value="'.$value.'">'.$view;
     }
     elsif($value =~ s/^label=//){
       $text .= '<optgroup label="'.$value.'">';
@@ -295,7 +301,10 @@ sub selectInput {
   my $text = '<div class="select-input"><select name="'.$name.'" oninput="selectInputCheck(this);'.$func.'">'.option($name, @_);
   $text .= '<option value="free">その他（自由記入）'; 
   my $hit = 0;
-  foreach my $value (@_) { if($::pc{$name} eq $value){ $hit = 1; last; } }
+  foreach my $value (@_) {
+    if($value =~ /^(.+)\|\<.*\>$/){ $value = $1; }
+    if($::pc{$name} eq $value){ $hit = 1; last; }
+  }
   if($::pc{$name} && !$hit){ $text .= '<option value="'.$::pc{$name}.'" selected>'.$::pc{$name}; }
   $text .= '</select>';
   $text .= '<input type="text" name="'.$name.'Free" list="list-'.$name.'"></div>';

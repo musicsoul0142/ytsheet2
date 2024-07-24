@@ -770,17 +770,18 @@ function view(viewId){
 }
 
 // ラジオボタン解除 ----------------------------------------
-document.querySelectorAll('input[type="radio"]:not([name="protect"])').forEach(radioButton => {
-  let label = document.querySelector(`label[for="${radioButton.id}"]`)
-
-  radioButton.addEventListener("mouseup", ()=>{
-    if(radioButton.checked){
-      clearRadioButton(radioButton)
-    }
-  });
+document.querySelectorAll('input[type="radio"].deselectable').forEach(radioButton => {
+  let label = radioButton.closest(`label`);
 
   if(label){
     label.addEventListener("mouseup", ()=>{
+      if(radioButton.checked){
+        clearRadioButton(radioButton)
+      }
+    });
+  }
+  else {
+    radioButton.addEventListener("mouseup", ()=>{
       if(radioButton.checked){
         clearRadioButton(radioButton)
       }
@@ -878,6 +879,11 @@ function idNumSet (id,after){
 // 数値3桁区切り ----------------------------------------
 function commify(num) {
   return String(num).replace(/([0-9]{1,3})(?=(?:[0-9]{3})+(?![0-9]))/g, "$1,");;
+}
+
+// 先頭を大文字 ----------------------------------------
+function ucfirst(str){
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 // 安全なeval ----------------------------------------

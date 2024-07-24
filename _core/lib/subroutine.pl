@@ -548,7 +548,7 @@ sub unescapeTagsLines {
   $text =~ s/^\*\*\*\*(.*?)$/<\/p><h5>$1<\/h5><p>/gim;
   $text =~ s/^\*\*\*(.*?)$/<\/p><h4>$1<\/h4><p>/gim;
   $text =~ s/^\*\*(.*?)$/<\/p><h3>$1<\/h3><p>/gim;
-  $text =~ s/\A\*(.*?)$/$main::pc{"head_$_"} = $1; ''/egim;
+  $text =~ s/\A\*(.*?)$/$main::pc{"head_$_"} = $1; ''/egim if $_;
   $text =~ s/^\*(.*?)$/<\/p><h2>$1<\/h2><p>/gim;
   
   $text =~ s/(?:^(?:\|(?:.*?))+\|[hc]?(?:\n|$))+/'<\/p><table class="note-table">'.&generateTable($&).'<\/table><p>'/egim;
@@ -714,6 +714,30 @@ sub convert10to36 {
   }
   return join('', @work);
 }
+
+### 行の有無チェック --------------------------------------------------
+## 数値の0も偽とする（NameとNoteは空のみ偽）
+sub existsRow {
+  my $prefix = shift;
+  foreach(@_){
+    if($_ eq 'Name' || $_ eq 'Note'){
+      if($::pc{$prefix.$_} ne ''){ return 1; }
+    }
+    else {
+      if($::pc{$prefix.$_}){ return 1; }
+    }
+  }
+  return 0;
+}
+## 厳密に空/未定義のみ偽
+sub existsRowStrict {
+  my $prefix = shift;
+  foreach(@_){
+    if($::pc{$prefix.$_} ne ''){ return 1; }
+  }
+  return 0;
+}
+## 0も偽としたい場合
 
 ### 案内画面 --------------------------------------------------
 sub info {
