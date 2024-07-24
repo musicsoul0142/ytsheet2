@@ -21,26 +21,26 @@ package set;
  # 登録キー
   our $registerkey = '';
  # データ作成・編集にユーザー登録（ログイン状態）を必須にする
-  our $user_reqd = 0;
+  our $user_reqd = 1;
  # キャラクター・魔物のIDをランダムではなくユーザーID＋番号(001,002..)にする(魔物はm001..)
   our $id_type = 0;
 
 ## ●OAuth2 でのログイン関係
  # OAuth2 を提供するサービスの名称。現在 Discord と Google のみ対応
-  our $oauth_service = '';
+  our $oauth_service = 'Discord';
  # OAuth2 で利用するサービスにユーザがログインするための URL
-  our $oauth_login_url = '';
+  our $oauth_login_url = 'https://discord.com/oauth2/authorize?client_id=1264787503450427422&response_type=code&redirect_uri=https%3A%2F%2Fginrin.f5.si%2Fytsheet2%2Far2e%2Foauth.cgi&scope=identify+guilds+email';
  # OAuth2 で利用するサービスから払い出される client_id
-  our $oauth_client_id = '';
+  our $oauth_client_id = '1264787503450427422';
  # OAuth2 で利用するサービスから払い出される client_secret
-  our $oauth_secret_id = '';
+  our $oauth_secret_id = 'nnktYZlV4fK_pcBKGTM2sXXdEmbF3dH1';
  # ゆとシート2 の URL のうち index.cgi を oauth.cgi に置換したもの
-  our $oauth_redirect_url = '';
+  our $oauth_redirect_url = 'https://ginrin.f5.si/ytsheet2/ar2e/oauth.cgi';
  # OAuth2 のスコープ
-  our $oauth_scope = '';
+  our $oauth_scope = 'identify+guilds+email';
 
  # OAuth で Discord を利用する場合のみ利用可能 ログインを許可する Discord のサーバ一覧。空リストの場合は制限しない
-  our @oauth_discord_login_servers = (); 
+  our @oauth_discord_login_servers = ('895463252354551868'); 
 
 ## ●画像関係
  # キャラクター画像のファイルサイズ上限(単位byte)
@@ -91,7 +91,7 @@ package set;
 
 ## ●各種ファイルへのパス
   our $sendmail = '/usr/sbin/sendmail'; # sendmailのパス
-  our $admimail = 'noreply@yutorize.2-d.jp'; # 管理者メールアドレス
+  our $admimail = 'noreply@ginrin.f5.si'; # 管理者メールアドレス
   
   our $data_dir = './data/'; # データ格納ディレクトリ
   our $passfile = $data_dir . 'charpass.cgi'; # パスワード記録ファイル
