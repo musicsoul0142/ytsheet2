@@ -82,19 +82,19 @@ sub paletteProperties {
     push @propaties, "//精神=$::pc{sttMndTotal}";
     push @propaties, "//幸運=$::pc{sttLukTotal}";
     push @propaties, "//筋力判定={筋力}".addNum($::pc{rollStrAdd});
-    push @propaties, "//筋力判定ダイス=".$pc{rollStrDice};
+    push @propaties, "//筋力判定ダイス=".$::pc{rollStrDice};
     push @propaties, "//器用判定={器用}".addNum($::pc{rollDexAdd});
-    push @propaties, "//器用判定ダイス=".$pc{rollDexDice};
+    push @propaties, "//器用判定ダイス=".$::pc{rollDexDice};
     push @propaties, "//敏捷判定={敏捷}".addNum($::pc{rollAgiAdd});
-    push @propaties, "//敏捷判定ダイス=".$pc{rollAgiDice};
+    push @propaties, "//敏捷判定ダイス=".$::pc{rollAgiDice};
     push @propaties, "//知力判定={知力}".addNum($::pc{rollIntAdd});
-    push @propaties, "//知力判定ダイス=".$pc{rollIntDice};
+    push @propaties, "//知力判定ダイス=".$::pc{rollIntDice};
     push @propaties, "//感知判定={感知}".addNum($::pc{rollSenAdd});
-    push @propaties, "//感知判定ダイス=".$pc{rollSenDice};
+    push @propaties, "//感知判定ダイス=".$::pc{rollSenDice};
     push @propaties, "//精神判定={精神}".addNum($::pc{rollMndAdd});
-    push @propaties, "//精神判定ダイス=".$pc{rollMndDice}
+    push @propaties, "//精神判定ダイス=".$::pc{rollMndDice};
     push @propaties, "//幸運判定={幸運}".addNum($::pc{rollLukAdd});
-    push @propaties, "//幸運判定ダイス=".$pc{rollLukDice};
+    push @propaties, "//幸運判定ダイス=".$::pc{rollLukDice};
     push @propaties, "### ■代入パラメータ";
     push @propaties, "//命中={器用判定}".addNum($::pc{battleAddAcc});
     push @propaties, "//命中ダイス=".$::pc{battleDiceAcc};
@@ -113,15 +113,15 @@ sub paletteProperties {
     push @propaties, "//危険感知={感知判定}"    .addNum($::pc{rollDangerDetectAdd});
     push @propaties, "//危険感知ダイス="        .$::pc{rollDangerDetectDice};
     push @propaties, "//エネミー識別={知力判定}".addNum($::pc{rollEnemyLoreAdd});
-    push @propaties, "//エネミー識別ダイス="    .$pc{rollEnemyLoreDice};
+    push @propaties, "//エネミー識別ダイス="    .$::pc{rollEnemyLoreDice};
     push @propaties, "//アイテム鑑定={知力判定}".addNum($::pc{rollAppraisalAdd});
-    push @propaties, "//アイテム鑑定ダイス="    .addNum($::pc{rollAppraisalAdd});
+    push @propaties, "//アイテム鑑定ダイス="    .addNum($::pc{rollAppraisalDice});
     push @propaties, "//魔術判定={知力判定}"    .addNum($::pc{rollMagicAdd});
-    push @propaties, "//魔術判定ダイス="        .$pc{rollAppraisalDice};
+    push @propaties, "//魔術判定ダイス="        .$::pc{rollMagicDice};
     push @propaties, "//呪歌判定={精神判定}"    .addNum($::pc{rollSongAdd});
-    push @propaties, "//呪歌判定ダイス="        .$pc{rollSongDice};
+    push @propaties, "//呪歌判定ダイス="        .$::pc{rollSongDice};
     push @propaties, "//錬金術判定={器用判定}"  .addNum($::pc{rollAlchemyAdd});
-    push @propaties, "//錬金術判定ダイス="      .$pc{rollAlchemyDice};
+    push @propaties, "//錬金術判定ダイス="      .$::pc{rollAlchemyDice};
   }
   
   return @propaties;
