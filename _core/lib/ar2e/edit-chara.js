@@ -286,7 +286,7 @@ function checkClass(){
     const select = form[`skill${num}Type`];
     const selected = select.value;
     for(let i = select.options.length - 1; i > 0; i--) {
-      if(!select.options[i].value.match(/^(race|add|general|style|geis)$/)){ select.options[i].remove(); }
+      if(!select.options[i].value.match(/^(race|add|general|style|geis|faith)$/)){ select.options[i].remove(); }
     }
     if(classes[classMain]?.type === 'fate'){
       Array.from(new Set([
@@ -300,7 +300,7 @@ function checkClass(){
       });
     }
     let array = experienced.concat();
-    if(selected && !selected.match(/^(race|add|general|style|geis|power|another)$/)){ array.push(selected); }
+    if(selected && !selected.match(/^(race|add|general|style|geis|faith|power|another)$/)){ array.push(selected); }
     Array.from(new Set(array)).forEach(name => {
       const option = document.createElement('option');
       option.value = name;
@@ -546,6 +546,7 @@ function calcSkills(){
     bg.toggle('style',   type === 'style'  );
     bg.toggle('add',     type === 'add'    );
     bg.toggle('geis',    type === 'geis'   );
+    bg.toggle('faith',type === "faith");
     bg.toggle('power',   type === 'power'  );
     bg.toggle('another', type === 'another');
     
