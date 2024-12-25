@@ -20,7 +20,7 @@ package set;
  # OAuth2 を提供するサービスの名称。現在 Discord と Google のみ対応
   our $oauth_service = 'Discord';
  # OAuth2 で利用するサービスにユーザがログインするための URL
-  our $oauth_login_url = 'https://discord.com/oauth2/authorize?client_id=1264787503450427422&response_type=code&redirect_uri=https%3A%2F%2Fginrin.f5.si%2Fytsheet2%2Far2e%2Foauth.cgi&scope=identify+guilds+email';
+  our $oauth_login_url = 'https://discord.com/oauth2/authorize?client_id=1264787503450427422&response_type=code&redirect_uri=https%3A%2F%2Fginrin.f5.si%2Fytsheet2%2Far2e%2Foauth.cgi&scope=identify+guilds';
  # OAuth2 で利用するサービスから払い出される client_id
   our $oauth_client_id = '1264787503450427422';
  # OAuth2 で利用するサービスから払い出される client_secret
@@ -28,7 +28,7 @@ package set;
  # ゆとシート2 の URL のうち index.cgi を oauth.cgi に置換したもの
   our $oauth_redirect_url = 'https://ginrin.f5.si/ytsheet2/ar2e/oauth.cgi';
  # OAuth2 のスコープ
-  our $oauth_scope = 'identify+guilds+email';
+  our $oauth_scope = 'identify+guilds';
 
  # OAuth で Discord を利用する場合のみ利用可能 ログインを許可する Discord のサーバ一覧。空リストの場合は制限しない
   our @oauth_discord_login_servers = ('895463252354551868'); 
